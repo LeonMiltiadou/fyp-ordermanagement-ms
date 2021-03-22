@@ -1,0 +1,42 @@
+{
+  "name": "fyp-cart-ms",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec",
+    "start": "nodemon --exec npx babel-node ./src/routes/server.js",
+    "startprod": "node ./lib/routes/server.js",
+    "build": "babel src -d lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LeonMiltiadou/fyp-cart-ms.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LeonMiltiadou/fyp-cart-ms/issues"
+  },
+  "homepage": "https://github.com/LeonMiltiadou/fyp-cart-ms#readme",
+  "dependencies": {
+    "@babel/runtime": "^7.13.8",
+    "@chec/commerce.js": "^2.3.2",
+    "axios": "^0.21.1",
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mocha": "^8.3.2",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.13.10",
+    "@babel/core": "^7.13.8",
+    "@babel/node": "^7.13.0",
+    "@babel/plugin-transform-runtime": "^7.13.10",
+    "@babel/preset-env": "^7.13.8",
+    "nodemon": "^1.18.4"
+  }
+}
