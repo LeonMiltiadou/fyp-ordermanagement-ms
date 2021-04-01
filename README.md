@@ -1,15 +1,50 @@
-# fyp-cart-ms
+# fyp-ordermanagement-ms
 
-Api Endpoints:
+## Api Endpoints:
 
-cartroutes.post('/addto', addtocart);
+/order/create
+/order/refund
+/order/retrieve
+/order/list
 
-cartroutes.get('/fetch/:cartID', fetchcart);
+/order/route/calculate
 
-cartroutes.get('/create', createcart);
 
-cartroutes.delete('/removefrom/:cartID/:lineItemId',removefromcart);
 
-cartroutes.delete('/empty/:cartID',emptycart);
+## Body:
 
-cartroutes.put('/updateqty',updatecartqty);
+### Body format
+
+{
+   "orders":[
+      {
+         "id":"",
+         "shipping":{
+            "name":"",
+            "street":"",
+            "town_city":"",
+            "county_state":"",
+            "postal_zip_code":"",
+            "country":""
+         }
+      }
+   ]
+}
+
+### Example
+
+{
+   "orders":[
+      {
+         "id":"ord_p7ZAMo1xwNJ4xX",
+         "shipping":{
+            "name":"John Doe",
+            "street":"123 Fake St",
+            "town_city":"San Francisco",
+            "county_state":"CA",
+            "postal_zip_code":"94103",
+            "country":"US"
+         }
+      }
+   ]
+}
