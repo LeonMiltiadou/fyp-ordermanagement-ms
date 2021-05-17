@@ -4,7 +4,7 @@ require('dotenv').config()
 
 const url = process.env.COMMERCEBASEURL + "/checkouts/";
 
-const cartAPI = axios.create({
+const checkoutAPI = axios.create({
   baseURL: url,
   timeout: 3000,
   headers: {
@@ -13,16 +13,17 @@ const cartAPI = axios.create({
   }
 });
 
-module.exports = {
+
+const checkoutFunctions = {
 
   /**
    * Generates a token to be used to create an order
    * https://commercejs.com/docs/api/#generate-token
    */
 
-  generateToken: async (ID) => {
-    return await cartAPI.post(ID).then((cart) => {
-      return { data: cart.data, status: cart.status };
+  generateToken: async (cartID) => {
+    return await checkoutAPI.get(cartID, { params: { type: "cart" } }).then((checkout) => {
+      return { data: checkout.data, status: checkout.status };
     }).catch((error) => {
       if (error.response) {
         console.error('There was an error generating a token', error);
@@ -38,16 +39,19 @@ module.exports = {
   * https://commercejs.com/docs/api/#capture-order
   */
 
-  createOrder: async (token) => {
-    return await cartAPI.post(token).then((cart) => {
-      return { data: cart.data, status: cart.status };
+  createOrder: async (tokenID, orderDetails) => {
+
+    return await checkoutAPI.post(tokenID, orderDetails).then((checkout) => {
+      return { data: checkout.data, status: checkout.status };
     }).catch((error) => {
       if (error.response) {
         console.error('There was an error creating an order', error);
-        return { data: 'There was an error creating an order', status: error.response.status };
+        return { data: error.response.data, status: error.response.status };
       } else {
         return { data: error.message, status: 500 };
       }
     });
   }
 }
+
+module.exports = checkoutFunctions;

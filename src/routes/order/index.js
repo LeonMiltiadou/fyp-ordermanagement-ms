@@ -1,9 +1,13 @@
-const orderroutes = require('express').Router();
+const orderRoutes = require('express').Router();
+const routeRoutes = require('./route');
 
-const createOrder = require('./createOrder');
-const generateToken = require('./generateToken');
+const { refundOrder } = require('./refundOrder');
+const { retrieveOrder } = require('./retrieveOrder');
+const { listOrders } = require('./listOrders');
 
-orderroutes.get('/create/:ID', createOrder);
-orderroutes.get('/generatetoken/:token', generateToken);
+orderRoutes.post('/refund', refundOrder);
+orderRoutes.get('/retrieve', retrieveOrder);
+orderRoutes.get('/list', listOrders);
 
-module.exports = orderroutes;
+orderRoutes.use('/route', routeRoutes)
+module.exports = orderRoutes;
